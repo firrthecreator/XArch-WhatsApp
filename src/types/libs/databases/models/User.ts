@@ -201,9 +201,9 @@ export interface IUser {
    */
   customization: {
     /** The URL of the user's profile image. */
-    profileImageUrl: string;
+    profileImagePath: string;
     /** The URL of the user's background image. */
-    backgroundImageUrl: string;
+    backgroundImagePath: string;
     /** Data related to the user's profile borders. */
     borders: {
       /** An array of owned border IDs. */

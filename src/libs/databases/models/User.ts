@@ -151,9 +151,9 @@ export function createUser(id: string): IUser {
      */
     customization: {
       /** The URL of the user's profile image. */
-      profileImageUrl: '../../../../assets/avatar.png',
+      profileImagePath: '../../../../assets/avatar.png',
       /** The URL of the user's background image. */
-      backgroundImageUrl: '../../../../assets/banner.png',
+      backgroundImagePath: '../../../../assets/banner.png',
       /** Data related to the user's profile borders. */
       borders: {
         /** An array of owned borders. */
