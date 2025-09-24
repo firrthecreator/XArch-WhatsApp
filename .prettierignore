@@ -1,0 +1,33 @@
+# Dependency and Build Folders
+bin/
+build/
+coverage/
+dist/
+node_modules/
+sessions/
+venv/
+vendor/
+
+# Lock, Log, and Cache Files
+*.log
+*.tsbuildinfo
+.eslintcache
+lerna-debug.log*
+npm-debug.log*
+pnpm-lock.yaml
+pnpm-workspace.yaml
+.pnpm-debug.log*
+yarn-debug.log*
+
+# Environment Variables
+.env
+.env.development.local
+.env.local
+.env.production.local
+.env.test.local
+
+# IDE and OS-Specific Files
+.DS_Store
+.history/
+Thumbs.db
+.vscode/

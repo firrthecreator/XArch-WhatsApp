@@ -1,0 +1,92 @@
+# General and Dependencies
+
+# Project dependencies.
+# These are installed via package managers and should not be committed.
+/node_modules/
+/vendor/
+
+# Package manager log files.
+npm-debug.log*
+npm-error.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Build Artifacts and Compiled Code
+
+# Compiled binaries and build outputs.
+# These files are generated from source code and do not belong in version control.
+/dist/
+/build/
+/out/
+/es/
+/lib/
+/bin/
+/temp/
+
+# Test coverage reports.
+/coverage/
+
+# Compiled Python files and virtual environments.
+/__pycache__/
+/venv/
+*.pyc
+*.pyo
+*.pyd
+
+# TypeScript build info cache.
+*.tsbuildinfo
+
+# Configuration and Sensitive Data
+
+# Environment variables.
+# These files contain sensitive information and are machine-specific.
+.env
+.env.*
+!.env.example
+!.env.ci
+
+# Application runtime data.
+# This data is transient and can contain sensitive user information.
+/sessions/
+
+# IDE and Editor Configuration
+
+# IDE specific settings.
+# This pattern ignores local workspace settings while allowing project wide configurations to be shared.
+/.vscode/
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+
+# Other common IDE directories and files.
+.idea/
+.project
+.settings
+.classpath
+*.sublime-project
+*.sublime-workspace
+
+# OS, Cache and Temporary Files
+
+# Operating System generated files.
+# These are metadata files created by the OS.
+.DS_Store
+Thumbs.db
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor backup and swap files.
+*.bak
+*.swp
+*.swo
+*~
+
+# General cache files.
+.eslintcache
+
+# Local development history.
+.history/

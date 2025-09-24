@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - baileys
+  - protobufjs
+  - sharp
+  - unrs-resolver
