@@ -1,5 +1,5 @@
 {
-  "name": "XArch",
+  "name": "xarch",
   "version": "1.0.0",
   "description": "XArch: A high-performance, multi-purpose WhatsApp bot built with Baileys and TypeScript.",
   "main": "dist/index.js",
