@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": [],
+            "compilerPath": "/usr/sbin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include",
+                "/usr/include/c++/15.2.1",
+                "/usr/include/c++/15.2.1/x86_64-pc-linux-gnu",
+                "/home/frrmnsyaa/.nvm/versions/node/v24.9.0/include/node",
+                "${workspaceFolder}/node_modules/node-addon-api"
+            ]
+        }
+    ],
+    "version": 4
+}

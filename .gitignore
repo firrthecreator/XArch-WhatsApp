@@ -55,9 +55,9 @@ lerna-debug.log*
 
 # IDE specific settings.
 # This pattern ignores local workspace settings while allowing project wide configurations to be shared.
-/.vscode/
-!.vscode/c_cpp_properties.json
-!.vscode/settings.json
+# /.vscode/
+# !.vscode/c_cpp_properties.json
+# !.vscode/settings.json
 # !.vscode/tasks.json
 # !.vscode/launch.json
 # !.vscode/extensions.json
