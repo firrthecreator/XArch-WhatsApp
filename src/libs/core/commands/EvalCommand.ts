@@ -1,5 +1,5 @@
 /**
- * @file src/commands/utility/EvalCommand.ts
+ * @file EvalCommand.ts
  * @description A highly privileged command for evaluating arbitrary JavaScript code.
  * This command provides a powerful debugging tool for bot developers, allowing them
  * to execute code directly within the application's runtime and inspect the results.
