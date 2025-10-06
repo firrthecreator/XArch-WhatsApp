@@ -57,7 +57,7 @@ class DeveloperCommand implements Command {
   description = "Displays information and the contact card of the bot's developer.";
 
   /** The roles required to execute this command. */
-  requiredRoles = [UserRole.DEVELOPER];
+  requiredRoles = [];
 
   /**
    * @private
