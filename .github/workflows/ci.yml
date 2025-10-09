@@ -16,6 +16,9 @@ jobs:
       - name: Checkout XArch Repository
         uses: actions/checkout@v4
 
+      - name: Install System Dependencies (Cairo)
+        run: sudo apt-get update && sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,4 +42,3 @@ jobs:
 
       - name: Run Unit Tests (Jest)
         run: pnpm test
-        
