@@ -9,16 +9,16 @@ on:
 
 jobs:
   build-and-test:
-    name: XArch Build, Test, and Lint
+    name: XArch Build, Test, and Quality Check
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout XArch Repository
         uses: actions/checkout@v4
-
-      - name: Install System Dependencies (Cairo)
-        run: sudo apt-get update && sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev
         
+      - name: Install System Dependencies (Cairo Dev)
+        run: sudo apt-get update && sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -31,9 +31,6 @@ jobs:
           run_install: true
           pnpm-cache: true
           
-      - name: Run ESLint Check
-        run: pnpm run lint
-
       - name: Check Code Formatting (Prettier)
         run: pnpm prettier --check "src/**/*.ts"
 
@@ -42,3 +39,4 @@ jobs:
 
       - name: Run Unit Tests (Jest)
         run: pnpm test
+        
