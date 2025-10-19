@@ -25,7 +25,7 @@ const config = {
        * @property {string} name
        * @description A unique and descriptive name for the application process. This name will be used to identify and manage the app via the PM2 CLI (e.g., `pm2 stop XArch`).
        */
-      name: 'XArch',
+      name: 'XArch-WhatsApp',
 
       /**
        * @property {string} script

@@ -1,7 +1,7 @@
 {
-  "name": "xarch",
+  "name": "xarch-whatsapp",
   "version": "1.0.0",
-  "description": "XArch: A high-performance, multi-purpose WhatsApp bot built with Baileys and TypeScript.",
+  "description": "XArch-WhatsApp: A high-performance, multi-purpose WhatsApp bot built with Baileys and TypeScript.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

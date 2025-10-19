@@ -1,4 +1,4 @@
-name: XArch CI Pipeline
+name: XArch-WhatsApp CI Pipeline
 
 on:
   push:
@@ -9,11 +9,11 @@ on:
 
 jobs:
   build-and-test:
-    name: XArch Build, Test, and Quality Check
+    name: XArch-WhatsApp Build, Test, and Quality Check
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout XArch Repository
+      - name: Checkout XArch-WhatsApp Repository
         uses: actions/checkout@v4
 
       - name: Install System Dependencies (Cairo Dev)
