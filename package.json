@@ -28,7 +28,7 @@
     "tsc",
     "node-gyp"
   ],
-  "author": "Ananda Firmansyah",
+  "author": "Firr, The Creator.",
   "license": "MIT",
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
