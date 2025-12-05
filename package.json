@@ -33,7 +33,7 @@
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
     "@hapi/boom": "^10.0.1",
-    "baileys": "7.0.0-rc.6",
+    "baileys": "7.0.0-rc.9",
     "dotenv": "^17.2.3",
     "inquirer": "^12.10.0",
     "mongodb": "^6.20.0",
