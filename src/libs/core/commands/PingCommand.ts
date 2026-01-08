@@ -1,97 +1,74 @@
 /**
  * @file PingCommand.ts
- * @description Defines the logic for the Ping command, which measures latency, API speed, uptime, and server load to monitor bot responsiveness and health.
+ * @description A command to check the bot's responsiveness.
+ * It calculates the latency between the message timestamp and the server processing time.
  */
 
 import { WAMessage, WASocket } from 'baileys';
 import { Command } from '../../../types/libs/core/handlers/CommandHandler';
-import os from 'os';
-import { PingData } from '../../../types/libs/core/commands/PingCommand';
+import { UserRole } from '../../../types/libs/databases/models/User';
 
 /**
  * @class PingCommand
- * @implements {Command}
- * @description A command to measure the bot's responsiveness and provide basic server health information.
+ * @description Measures the latency and response speed of the bot without extra system overhead.
  */
 class PingCommand implements Command {
-  /**
-   * @property {string} The primary name of the command.
-   */
-  name = 'ping';
+  /** The primary name of the command. */
+  name: string = 'ping';
+
+  /** An array of alternative names for the command. */
+  aliases: string[] = ['p'];
+
+  /** A brief description of the command. */
+  description: string = "Checks the bot's latency and response speed.";
+
+  /** The roles required to execute this command (accessible to everyone). */
+  requiredRoles: UserRole[] = [];
 
   /**
-   * @property {string[]} An array of alternative names for the command.
-   */
-  aliases = ['p'];
-
-  /**
-   * @property {string} A brief description of the command's purpose.
-   */
-  description = "Checks the bot's latency and response speed.";
-
-  /**
-   * @property {any[]} An array of required roles to execute this command. Empty means public.
-   */
-  requiredRoles = [];
-
-  /**
-   * Formats a duration in seconds into a human-readable string (D H M S).
-   * @private
-   * @param {number} seconds - The total seconds to format.
-   * @returns {string} The formatted uptime string (e.g., "1d 2h 3m 4s").
-   */
-  private formatUptime(seconds: number): string {
-    const d = Math.floor(seconds / (3600 * 24));
-    const h = Math.floor((seconds % (3600 * 24)) / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    const s = Math.floor(seconds % 60);
-    return `${d}d ${h}h ${m}m ${s}s`;
-  }
-
-  /**
-   * Executes the core logic of the ping command.
-   * It calculates latency based on the message timestamp and measures the internal processing speed.
-   * @public
+   * @description Executes the ping logic.
+   * Calculates the difference between the message timestamp and current server time.
+   *
    * @async
-   * @param {WASocket} sock - The Baileys socket instance.
-   * @param {WAMessage} msg - The message object that triggered the command.
-   * @returns {Promise<void>} A promise that resolves once the reply has been sent.
+   * @param {WASocket} sock The WebSocket connection object.
+   * @param {WAMessage} msg The message object triggering the command.
+   * @param {string[]} _args Arguments passed by the user (unused here).
+   * @returns {Promise<void>}
    */
-  async execute(sock: WASocket, msg: WAMessage): Promise<void> {
-    const startTime = Date.now();
-    const remoteJid = msg.key.remoteJid!;
+  async execute(sock: WASocket, msg: WAMessage, _args: string[]): Promise<void> {
+    const remoteJid: string = msg.key.remoteJid!;
 
-    const sentTimestamp =
+    // Capture the start time of the command execution
+    const startTime: number = Date.now();
+
+    // Determine the timestamp when the message was actually sent by the user
+    const messageTimestamp: number =
       typeof msg.messageTimestamp === 'number'
         ? msg.messageTimestamp * 1000
-        : msg.messageTimestamp?.toNumber()! * 1000;
+        : (msg.messageTimestamp?.toNumber() || 0) * 1000;
 
-    const latency = startTime - sentTimestamp;
-    const apiSpeed = Date.now() - startTime;
-    const uptime = this.formatUptime(process.uptime());
-    const loadAvg = os
-      .loadavg()
-      .map((avg) => avg.toFixed(2))
-      .join(', ');
+    // Calculate Latency (Time taken for message to reach server)
+    // We use Math.max to avoid negative numbers if clocks are slightly out of sync
+    const latency: number = Math.max(0, Date.now() - messageTimestamp);
 
-    const pingData: PingData = {
-      latency,
-      apiSpeed,
-      uptime,
-      loadAvg,
-    };
+    // Calculate Response Speed (Processing time within the bot)
+    const responseSpeed: number = Date.now() - startTime;
 
-    const replyText = `
-⟨⟨ *Pong!* ⟩⟩
+    /**
+     * @description Formats the output using the standard box design.
+     */
+    const replyText: string = `┌──「 *Server Speed* 」
 
-*› Latency:* ${pingData.latency} ms
-*› API Speed:* ${pingData.apiSpeed} ms
-*› Uptime:* ${pingData.uptime}
-*› Server Load:* ${pingData.loadAvg}
-`.trim();
+    Latency   : ${latency}ms
+    Response  : ${responseSpeed}ms
+
+└──「 *Pong* 」`;
 
     await sock.sendMessage(remoteJid, { text: replyText });
   }
 }
 
+/**
+ * @description Exports the instance of PingCommand.
+ */
 export default new PingCommand();

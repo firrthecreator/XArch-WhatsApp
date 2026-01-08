@@ -67,13 +67,14 @@ describe('PingCommand', () => {
    */
   it('should calculate latency and send the correct formatted message', async () => {
     // Arrange: Set up mock timestamps to control the test's timing.
+    const messageTimestamp = 1728042180000; // Message sent at this time
     const startTime = 1728042180123; // 123ms after the message was sent.
     const endTime = 1728042180128; // 5ms later, representing processing time.
 
-    jest.spyOn(Date, 'now').mockReturnValueOnce(startTime).mockReturnValueOnce(endTime);
+    jest.spyOn(Date, 'now').mockReturnValueOnce(startTime).mockReturnValueOnce(startTime).mockReturnValueOnce(endTime);
 
     // Act: Execute the command with the mock objects.
-    await command.execute(mockSock as WASocket, mockMsg as WAMessage);
+    await command.execute(mockSock as WASocket, mockMsg as WAMessage, []);
 
     // Assert: Verify the results.
     const expectedLatency = 123;
@@ -81,14 +82,12 @@ describe('PingCommand', () => {
     const expectedUptime = '1d 1h 1m 1s';
     const expectedLoadAvg = '0.10, 0.20, 0.30';
 
-    const expectedReply = `
-⟨⟨ *Pong!* ⟩⟩
+    const expectedReply = `┌──「 *Server Speed* 」
 
-*› Latency:* ${expectedLatency} ms
-*› API Speed:* ${expectedApiSpeed} ms
-*› Uptime:* ${expectedUptime}
-*› Server Load:* ${expectedLoadAvg}
-`.trim();
+    Latency   : ${expectedLatency}ms
+    Response  : ${expectedApiSpeed}ms
+
+└──「 *Pong* 」`;
 
     expect(mockSock.sendMessage).toHaveBeenCalledTimes(1);
     expect(mockSock.sendMessage).toHaveBeenCalledWith('12345@s.whatsapp.net', {
